@@ -78,7 +78,8 @@ class UserController extends Controller
 
     public function show($id) {
 
-        $user = User::with(['contact', 'books'])->select('id', 'email', 'name')->find($id);
+        // how do i select title & page field for book ?
+        $user = User::with(['contact:user_id,phone,address', 'books.categories:name'])->select('id', 'email', 'name')->find($id);
 
         $response = response([
             'user' => $user
